@@ -1,0 +1,78 @@
+<div class="modal fade" id="viewModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bgColorWhite">
+          <h4 class="modal-title">Update Details</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+            <div class="row g-2">
+                <div class="col">
+                    <strong>Owner:</strong>
+                    {{row.owner}}
+                </div>
+                <div class="col">
+                    <strong>National ID:</strong>
+                    {{row.id_number}}
+                </div>
+            </div>
+            <hr>
+            <div class="row g-2">
+                <div class="col">
+                    <strong>Email:</strong>
+                    {{row.email}} 
+                </div>
+
+                <div class="col">
+                    <strong>Phone Number:</strong>
+                    {{row.phone_number}}
+                </div>
+            </div>
+            <hr>
+            <div class="row g-2">
+                <div class="col">
+                    <strong>Vehicle Name:</strong>
+                    {{row.vehicle_name}}
+                </div>
+
+                <div class="col">
+                    <strong>Model:</strong>
+                    {{row.model}}
+                </div>
+            </div>
+            <hr>
+            <div class="row g-2">
+                <div class="col-lg-6">
+                    <strong>Number Plate:</strong>
+                    {{row.number_plate}}
+                </div>
+                <div class="col">
+                    <strong>Color</strong>
+                    {{row.color}}
+                </div>
+
+            </div>
+            <hr>
+            <div class="row g-2">
+                <div class="col">
+                    <strong>Role:</strong>
+                    {{row.role}}
+                </div>
+                <div class="col">
+                    <strong>Status:</strong>
+                    {{row.status}}
+                </div>
+            </div>
+            <hr>
+            <hr>      
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+  

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANPR SYSTEM</title>
+    {% block stylesheets %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/adminlte.min.css') }}">
+  {% endblock stylesheets %}
+</head>
+<!-- styele="background-image: url({{ url_for('static', filename='img/1.jpg')}})" -->
+<body class="login-page" style="min-height: 512.8px;background-image: url( '/static/img/4.jpg' ); ">
+    <div class="login-box">
+        {% block content %}
+            
+        {% endblock content %} 
+    </div>
+</body>
+</html>

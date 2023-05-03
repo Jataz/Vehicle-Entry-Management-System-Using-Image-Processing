@@ -1,0 +1,44 @@
+    <a href="{{url_for('dashboard')}}" class="brand-link">
+      <span class="brand-text font-weight-light">ANPR SYSTEM</span>
+    </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+              <!-- Sidebar user panel (optional) -->
+
+              <!-- Sidebar Menu -->
+              
+              <nav class="mt-2">
+                  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                      <li class="nav-item">
+                          <a href="{{url_for('dashboard')}}" class="nav-link">
+                              <i class="nav-icon fas fa-chalkboard"></i>
+                              <span class="title">Dashboard</span>
+                          </a>
+                      </li> 
+                      
+                      <li class="nav-item">
+                        <a href="{{url_for('vehicles')}}"  class="nav-link">
+                            <i class="nav-icon fas fa-car"></i>
+                            <span class="title">Vehicles</span>
+                        </a>
+                      </li> 
+
+                      <li class="nav-item">
+                        <a href="{{url_for('users')}}"  class="nav-link">
+                            <i class="nav-icon fas fa-user-cog"></i>
+                            <span class="title">Users</span>
+                        </a>
+                      </li> 
+
+                      <li class="nav-item">
+                          <a  href="{{url_for('logout')}}"  class="nav-link">
+                              <i class="nav-icon fas fa-power-off"></i>
+                              <span class="title">Logout</span>
+                          </a>
+                      </li>
+                  </ul>
+              </nav>
+              
+              <!-- /.sidebar-menu -->
+          </div>

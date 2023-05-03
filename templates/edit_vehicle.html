@@ -1,0 +1,99 @@
+<div class="modal fade" id="modaledit{{row.id}}">
+
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bgColorWhite">
+          <h4 class="modal-title">Update Details</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="{{ url_for('update_vehicle') }}" method="post">
+  
+            <div class="row g-2">
+              <div class="mb-3 col-md-6">
+                  <label for="owner" class="form-label">Owner</label>
+                  <input type="text" class="form-control"  name="owner" value={{row.owner}}>
+  
+              </div>
+<!--               <div class="mb-3 col-md-6">
+                  <label for="id_number" class="form-label">National ID</label>
+                  <input type="text" class="form-control" value={{row.id_number}} name="id_number" id="id_number" >
+              </div>  -->
+              <div class="form-group row">
+                <label for="name" class="col-sm-3 col-form-label">Name</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control"  name="name" placeholder="Name" value={{row.owner}}>
+                </div>
+            </div>
+            </div>   
+             
+            <div class="row g-2">
+              <div class="mb-3 col-md-6">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="text" class="form-control" value={{row.email}} name="email" id="email" >
+  
+              </div>
+              <div class="mb-3 col-md-6">
+                  <label for="phone_number" class="form-label">Phone Number</label>
+                  <input type="text" class="form-control" value={{row.phone_number}} name="phone_number"  id="phone_number" >
+              </div> 
+            </div>
+            
+            <div class="row g-2">
+              <div class="mb-3 col-md-6">
+                  <label for="vehicle_name" class="form-label">Vehicle Name</label>
+                  <input type="text" class="form-control" value={{row.vehicle_name}} name="vehicle_name" id="vehicle_name"  >
+  
+              </div>
+              <div class="mb-3 col-md-6">
+                <label for="model" class="form-label">Model</label>
+                <input type="text" class="form-control" value={{row.model}} name="model" id="model"  >
+              </div> 
+            </div>
+            
+            <div class="row g-2">
+              <div class="mb-3 col-md-6">
+                  <label for="number_plate" class="form-label">Number Plate</label>
+                  <input type="text" class="form-control" value={{row.number_plate}} name="number_plate" id="number_plate"  >
+  
+              </div>
+              <div class="mb-3 col-md-6">
+                  <label for="color" class="form-label">Color</label>
+                  <input type="text" class="form-control" value={{row.color}} name="color" id="color"  >
+              </div> 
+            </div>    
+            <div class="row g-2">
+              <div class="mb-3 col-md-6">
+                  <label for="role" class="form-label">Role</label>
+                  <select  class="form-control" name="role" id="role" value={{row.role}} >
+                    <option value="{{ row[9] }}">{{ row[9] }}</option>
+                    <option value="student">Student</option>
+                    <option value="admin">Admin</option>
+                  </select>
+              </div>
+              <div class="mb-3 col-md-6">
+                  <label for="status" class="form-label">Status</label>
+                  <select  class="form-control" name="status" id="status" value={{row.status}} >
+                    <option value="{{ row[10] }}">{{ row[10] }}</option>
+                    <option value="allowed">Allowed</option>
+                    <option value="not allowed">Not Allowed</option>
+                  </select>
+              </div> 
+            </div>      
+            
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+          </form>
+      
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+  

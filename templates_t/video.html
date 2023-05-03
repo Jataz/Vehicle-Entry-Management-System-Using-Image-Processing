@@ -1,0 +1,58 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Vehicles</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <section class="content">
+    <div class="container-fluid">
+        <div class="col d-flex justify-content-center">
+            <div class="card w-75">
+                <div class="card-header">
+                    <h3 class="card-title">Video Capture</h3> 
+                </div>
+                <!-- Card body -->
+                <div class="card-body">
+                     <img src="{{ url_for('video_feed') }}" width="640"> 
+              
+   <!--                  <video width="640"  controls autoplay>
+                      <source src="{{ url_for('video_feed') }}" >
+                  
+                    </video> -->
+                </div>
+                <!-- /.Card body -->
+            </div>
+
+            <div class="card w-50">
+                <div class="card-header">
+                    <h3 class="card-title">Vehicle Details</h3> 
+                </div>
+                <!-- Card body -->
+                <div class="card-body">
+
+                  <p>Vehicle Owner: {{ vehicle.owner }}</p>
+                  <p>Phone Number: {{ vehicle.phone_number}}</p>
+                  <p>Model: {{ vehicle.model }}</p>
+                  <p>Color: {{ vehicle.color }}</p>
+                  <p>Number Plate: {{ vehicle.number_plate}}</p>
+                </div>
+                <!-- /.Card body -->
+            </div>
+        </div>
+    </div>
+
+  </section>
+{% endblock content %}
