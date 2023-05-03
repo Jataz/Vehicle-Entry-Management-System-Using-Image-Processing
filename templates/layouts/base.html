@@ -100,6 +100,19 @@
  </script>
 
 <script>
+
+  function isValidPhoneNumber(phoneNumber) {
+    // Regular expression for phone number validation
+    var regex = /^\d{10}$/;
+    return regex.test(phoneNumber);
+  }
+
+  function isValidEmail(email) {
+    // Regular expression for email validation
+    var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  }
+
   function validateForm() {
       // Get input values
       var owner = document.getElementById('owner').value;
@@ -119,40 +132,63 @@
           return false;
       }
 
-      if (password.length < 8) {
-          alert('Password must be at least 8 characters long!');
-          return false;
-      }
 
-      // If validation passes, allow form submission
+      if (!isValidEmail(email)) {
+        alert('Invalid email format!');
+        return false;
+      }
+  
+      if (!isValidPhoneNumber(phone_number)) {
+        alert('Invalid phone number format, Put 10 digits!');
+        return false;
+      }
+  
       return true;
   }
 </script>
 
-<!-- <script>
-function validateForm() {
-  var name = document.getElementById("name").value;
-  var email = document.getElementById("email").value;
+<script>
 
-  if (name == "") {
-    document.getElementById("error-message").innerHTML = "Please enter your name.";
-    return false;
+  function isValidPhoneNumber(phoneNumber) {
+    // Regular expression for phone number validation
+    var regex = /^\d{10}$/;
+    return regex.test(phoneNumber);
   }
 
-  if (email == "") {
-    document.getElementById("error-message").innerHTML = "Please enter your email address.";
-    return false;
+  function isValidEmail(email) {
+    // Regular expression for email validation
+    var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
   }
 
-  var emailRegex = /^\S+@\S+\.\S+$/;
-  if (!emailRegex.test(email)) {
-    document.getElementById("error-message").innerHTML = "Please enter a valid email address.";
-    return false;
+  function validateUser() {
+      // Get input values
+      var name = document.getElementById('name').value;
+      var username = document.getElementById('username').value;
+      var email = document.getElementById('email').value;
+      var phone_number = document.getElementById('phone_number').value;
+      var password = document.getElementById('password').value;
+      var confirm_password = document.getElementById('confirm_password ').value;
+
+      // Perform validation
+      if (name == ''|| username== ''|| email == '' || phone_number == '' || password == ''|| confirm_password  == '') {
+          alert('All fields are required!');
+          return false;
+      }
+
+
+      if (!isValidEmail(email)) {
+        alert('Invalid email format!');
+        return false;
+      }
+  
+      if (!isValidPhoneNumber(phone_number)) {
+        alert('Invalid phone number format, Put 10 digits!');
+        return false;
+      }
+  
+      return true;
   }
-
-  return true;
-}
-</script> -->
-
+</script>
 </body>
 </html>

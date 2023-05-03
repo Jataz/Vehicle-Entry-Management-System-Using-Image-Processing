@@ -8,7 +8,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="{{ url_for('create_vehicle') }}" method="post" onsubmit="return validateForm()">
+        <form  action="{{ url_for('create_vehicle') }}" method="post" onsubmit="return validateForm()">
 
           <div class="row g-2">
             <div class="mb-3 col-md-6">
@@ -18,19 +18,19 @@
             </div>
             <div class="mb-3 col-md-6">
                 <label for="id_number" class="form-label">National ID</label>
-                <input type="text" class="form-control" placeholder="National ID" name="id_number" id="id_number" >
+                <input type="text" class="form-control" placeholder="eg. 06092827h37" name="id_number" id="id_number" >
             </div> 
           </div>   
            
           <div class="row g-2">
             <div class="mb-3 col-md-6">
                 <label for="email" class="form-label">Email</label>
-                <input type="text" class="form-control" placeholder="Email" name="email" id="email" >
+                <input type="text" class="form-control" placeholder="e.g. example@gmail.com" name="email" id="email" >
 
             </div>
             <div class="mb-3 col-md-6">
                 <label for="phone_number" class="form-label">Phone Number</label>
-                <input type="text" class="form-control" placeholder="Phone Number" name="phone_number"  id="phone_number" >
+                <input type="text" class="form-control" placeholder="e.g. 07735072020" name="phone_number"  id="phone_number" >
             </div> 
           </div>
           
@@ -49,7 +49,7 @@
           <div class="row g-2">
             <div class="mb-3 col-md-6">
                 <label for="number_plate" class="form-label">Number Plate</label>
-                <input type="text" class="form-control" placeholder="Number Plate" name="number_plate" id="number_plate"  >
+                <input type="text" class="form-control" placeholder="e.g. ABC1234" name="number_plate" id="number_plate"  >
 
             </div>
             <div class="mb-3 col-md-6">
@@ -59,11 +59,12 @@
           </div>    
           <div class="row g-2">
             <div class="mb-3 col-md-6">
-                <label for="role" class="form-label">Role</label>
+                <label for="role" class="form-label">Category</label>
+                
                 <select  class="form-control" name="role" id="role" >
                   <option value="">Select Role</option>
                   <option value="student">Student</option>
-                  <option value="admin">Admin</option>
+                  <option value="admin">Staff</option>
                 </select>
             </div>
             <div class="mb-3 col-md-6">

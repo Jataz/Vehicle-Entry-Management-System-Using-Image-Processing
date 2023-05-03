@@ -62,7 +62,6 @@
                         {% endwith %}
                         <thead>
                         <tr>
-                          <th>ID</th>
                           <th>Name</th>
                           <th>Username</th>
                           <th>Email</th>
@@ -72,12 +71,11 @@
                         <tbody>
                           {% for user in users  %}
                           <tr>
-                            <td>{{user.userid}}</td>
-                            <td>{{user.name}}</td>
-                            <td>{{user.Username}}</td>
-                            <td>{{user.email}}</td>
+                            <td>{{user.1}}</td>
+                            <td>{{user.2}}</td>
+                            <td>{{user.3}}</td>
                             <td>  
-                              <a  data-toggle="modal" data-target="#editUser" data-backdrop="static" data-keyboard="true"><span class="btn btn-primary btn-sm">Edit</span></a>
+                              <a  data-toggle="modal" data-target="#editUser{{user.4}}" data-backdrop="static" data-keyboard="true"><span class="btn btn-primary btn-sm">Edit</span></a>
                               <a href="" data-toggle="modal" data-target="#deleteModal" data-backdrop="static" data-keyboard="true"><span class="btn btn-danger btn-sm">Delete</span></a>  
                             </td>
                           </tr>

@@ -8,62 +8,63 @@
           </button>
         </div>
         <div class="modal-body">
-          {% with messages = get_flashed_messages() %}
+
+          <form action="{{ url_for('create_user') }}" method="POST" enctype="multipart/form-data" onsubmit="return validateUser()">
+            {% with messages = get_flashed_messages() %}
  
-          {% if messages %}
-
-          {% for message in messages %}
-
-            <div class="alert alert-warning alert-dismissable" role="alert">
-
-                <button type="button" class="close" data-dismiss="alert" aria-label="close">
-
-                    <span aria-hidden="true">x</span>
-
-                </button>
-
-
-                  {{message}}
-            </div>
-
-
-          {% endfor %}
-
-          {% endif %}
-          {% endwith %}
-          <form action="{{ url_for('create_user') }}" method="POST" enctype="multipart/form-data">
+            {% if messages %}
+  
+            {% for message in messages %}
+  
+              <div class="alert alert-warning alert-dismissable" role="alert">
+  
+                  <button type="button" class="close" data-dismiss="alert" aria-label="close">
+  
+                      <span aria-hidden="true">x</span>
+  
+                  </button>
+  
+  
+                    {{message}}
+              </div>
+  
+  
+            {% endfor %}
+  
+            {% endif %}
+            {% endwith %}
             <div class="row g-2">
                 <div class="mb-3 col-md-6">
                      <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control" placeholder="Name" name="name" required>
+                    <input type="text" class="form-control" placeholder="Name" name="name" id="name">
                 </div>
                 <div class="mb-3 col-md-6">
                      <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" placeholder="Username" name="username" required>
+                    <input type="text" class="form-control" placeholder="Username" name="username" id="username">
                 </div> 
             </div>  
             
             <div class="row g-2">
                 <div class="mb-3 col-md-6">
                     <label for="password" class="form-label">Email</label>
-                    <input type="email" class="form-control" name="email" placeholder="Email" required>
+                    <input type="email" class="form-control" name="email" placeholder="e.g. example@gmail.com" id="email">
                 </div>
 
                 <div class="mb-3 col-md-6">
                   <label for="password" class="form-label">Phone Number</label>
-                  <input type="text" class="form-control" name="phone_number" placeholder="Phone Number" required>
+                  <input type="text" class="form-control" name="phone_number" placeholder="e.g. 0773507202" id="phone_number" >
               </div>
             </div>  
 
             <div class="row g-2">
                 <div class="mb-3 col-md-6">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password" placeholder="Password" required>
+                    <input type="password" class="form-control" name="password" placeholder="Password" id="password">
                 </div>
 
                 <div class="mb-3 col-md-6">
                   <label for="password" class="form-label">Confirm Password</label>
-                  <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required>
+                  <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" id="confirm_password">
                   {% if error %}
                     <p style="color: red;">{{ error }}</p>
                   {% endif %}

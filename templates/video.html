@@ -26,7 +26,12 @@
                 </div>
                 <!-- Card body -->
                 <div class="card-body">
-                    <img src="{{ url_for('video_feed') }}" width="640">
+                     <img src="{{ url_for('video_feed') }}" width="640"> 
+              
+   <!--                  <video width="640"  controls autoplay>
+                      <source src="{{ url_for('video_feed') }}" >
+                  
+                    </video> -->
                 </div>
                 <!-- /.Card body -->
             </div>
@@ -37,11 +42,12 @@
                 </div>
                 <!-- Card body -->
                 <div class="card-body">
-                  <p>Vehicle Owne: {{ vehicle.1 }}</p>
-                  <p>Phone Number: {{ vehicle.4 }}</p>
-                  <p>Model: {{ vehicle.6 }}</p>
-                  <p>Color: {{ vehicle.7 }}</p>
-                  <p>Number Plate: {{ vehicle.9 }}</p>
+
+                  <p>Vehicle Owner: {{ vehicle.owner }}</p>
+                  <p>Phone Number: {{ vehicle.phone_number}}</p>
+                  <p>Model: {{ vehicle.model }}</p>
+                  <p>Color: {{ vehicle.color }}</p>
+                  <p>Number Plate: {{ vehicle.number_plate}}</p>
                 </div>
                 <!-- /.Card body -->
             </div>
