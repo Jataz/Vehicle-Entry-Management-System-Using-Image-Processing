@@ -9,6 +9,7 @@ from uuid import uuid4 as uuid
 import requests
 from gate import open_and_close_gate
 from time import time
+from _global import glob
 
 def is_plate_valid(plate):
    try:
@@ -227,45 +228,48 @@ last_valid_plate = None
 last_valid_plate_time = 0
 
 
-while (True):
+def computer_vision_thread_func():
 
-   success, frame = vc.read()
+   global vc
 
-   if (not success):
-      vc = cv2.VideoCapture(video_path)
-      continue
+   while (True):
 
-   # get plate coordinates
-   coordinates = get_numberplate_coordinates(frame)
+      success, frame = vc.read()
 
-   if (coordinates is not None):
-  
-      top, bottom = coordinates
+      if (not success):
+         vc = cv2.VideoCapture(video_path)
+         continue
 
-      x_top, y_top = top
-      x_bottom, y_bottom = bottom
+      # get plate coordinates
+      coordinates = get_numberplate_coordinates(frame)
 
-      plate = process_image_on_coordinates(frame, top, bottom)
+      if (coordinates is not None):
+   
+         top, bottom = coordinates
 
-      if (len(plate) > 0):
-         add_text_with_box(frame, plate, x_top, y_bottom)
+         x_top, y_top = top
+         x_bottom, y_bottom = bottom
 
-         height = y_bottom - y_top
-         width  = x_bottom - x_top
+         plate = process_image_on_coordinates(frame, top, bottom)
 
-         draw_box(frame, top, width=width, height=height)
+         if (len(plate) > 0):
+            add_text_with_box(frame, plate, x_top, y_bottom)
 
-         plate_is_valid = is_plate_valid(plate)
+            height = y_bottom - y_top
+            width  = x_bottom - x_top
 
-         if (plate_is_valid):
+            draw_box(frame, top, width=width, height=height)
 
-            if (plate == last_valid_plate) and (last_valid_plate_time > time() - 20):
-               pass
-            else:
-               open_and_close_gate()
-               last_valid_plate = plate
-               last_valid_plate_time = time()
+            plate_is_valid = is_plate_valid(plate)
 
-      
-   cv2.imshow('Video Feed', frame)
-   cv2.waitKey(1)
+            if (plate_is_valid):
+
+               if (plate == last_valid_plate) and (last_valid_plate_time > time() - 20):
+                  pass
+               else:
+                  open_and_close_gate()
+                  last_valid_plate = plate
+                  last_valid_plate_time = time()
+
+         
+      glob.last_fame = frame

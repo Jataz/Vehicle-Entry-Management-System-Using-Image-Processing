@@ -1,34 +1,39 @@
 from datetime import datetime
-from flask import Flask, render_template, request, url_for, redirect,flash, session,jsonify, Response,g
+from flask import Flask, render_template, request, url_for, redirect,flash, session, jsonify, Response
 from flask_mysqldb import MySQL
 import mysql.connector
 import MySQLdb.cursors
 from werkzeug.security import generate_password_hash, check_password_hash 
-from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
-from flask_ckeditor import CKEditor
-import sqlite3
+from flask_login import UserMixin, LoginManager
 from flask_sqlalchemy import SQLAlchemy
 
 from flask_mysqldb import MySQL
 from threading import Thread
+from _global import glob
+import cv2
+
+
+# start computer vision thread
+from computer_vision import computer_vision_thread_func
+computer_vision_thread = Thread(target=computer_vision_thread_func)
+computer_vision_thread.start()
 
 
 #remove non-alphanumeric characters from a string
-import re
 import data as dt
 
 
 app = Flask(__name__)
-app.secret_key = "this-is-a-secret-key"
+app.secret_key = "this-is-a-secret-key" # no it's not 😂😂
 
 app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'final_db' 
+app.config['MYSQL_USER'] = 'anpr'
+app.config['MYSQL_PASSWORD'] = '042ecd3b-e71d-4f8d-9838-1f0f3787c75f'
+app.config['MYSQL_DB'] = 'anpr' 
 
 mysql = MySQL(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/final_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://anpr:042ecd3b-e71d-4f8d-9838-1f0f3787c75f@localhost/anpr'
 # Secret Key!
 # Initialize The Database
 #app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -51,6 +56,7 @@ class Vehicles(db.Model, UserMixin):
 	role = db.Column(db.Text(), nullable=True)
 	status = db.Column(db.Text(), nullable=True)
 	number_plate= db.Column(db.String(), nullable=True)
+        
 
 
 
@@ -187,6 +193,22 @@ def update_vehicle():
             
         return redirect(url_for('vehicles'))
 
+# Video streaming
+def gen():
+    while True:
+        success, frame = cv2.imencode('.jpeg', glob.last_fame)
+        frame = frame.tobytes()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+@app.route('/video-feed')
+def video_feed():
+    return Response(gen(),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@app.route('/video')
+def video_show():
+    return render_template("video.html")
 
 
 #User routes 

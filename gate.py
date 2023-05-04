@@ -15,7 +15,7 @@ def close_gate():
 
 
 # Serial communication setup
-arduino = Serial("COM3", 9600)
+arduino = Serial("/dev/ttywf", 9600)
 
 def open_and_close_gate_thread_func():
    open_gate()
@@ -26,6 +26,3 @@ def open_and_close_gate():
    thread = Thread(target=open_and_close_gate_thread_func)
    thread.start()
    
-   
-   #updat the last frame
-   #serial communication between the machine and the arduino
