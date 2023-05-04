@@ -6,7 +6,7 @@ mydb = mysql.connector.connect(
   host="localhost",
   user="root",
   password="",
-  database="anpr"
+  database="final_db"
 )
 
 cur = mydb.cursor()

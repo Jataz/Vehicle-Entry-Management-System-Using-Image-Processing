@@ -2,14 +2,39 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header bgColorWhite">
-          <h4 class="modal-title">Change Status</h4>
+          <h4 class="modal-title">Update Details</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <form action="{{ url_for('update_vehicle') }}" method="post">
-            
+
+
+            <div class="row g-2">
+              <div class="mb-3 col-md-6">
+                  <label for="owner" class="form-label">Owner</label>
+                  <input type="text" class="form-control" value="{{ row.1 }}" name="owner" id="owner"  >
+
+              </div>
+              <div class="mb-3 col-md-6">
+                  <label for="id_number" class="form-label">National ID</label>
+                  <input type="text" class="form-control" value="{{ row.2 }}" name="id_number" id="id_number" >
+              </div> 
+            </div>   
+           
+            <div class="row g-2">
+              <div class="mb-3 col-md-6">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="text" class="form-control" value="{{ row.3 }}" name="email" id="email" >
+  
+              </div>
+              <div class="mb-3 col-md-6">
+                  <label for="phone_number" class="form-label">Phone Number</label>
+                  <input type="text" class="form-control" value="{{ row.4 }}"name="phone_number"  id="phone_number" >
+              </div> 
+            </div>
+
             <div class="row g-2">
               <div class="mb-3 col-md-6">
                   <label for="vehicle_name" class="form-label">Vehicle Name</label>
@@ -34,6 +59,15 @@
               </div> 
             </div>    
             <div class="row g-2">
+              <div class="mb-3 col-md-6">
+                <label for="role" class="form-label">Category</label>
+                
+                <select  class="form-control" name="role" id="role" value={{row.role}}>
+                  <option value="{{ row[8] }}">{{ row[8] }}</option>
+                  <option value="student">Student</option>
+                  <option value="admin">Staff</option>
+                </select>
+              </div>
               <div class="mb-3 col-md-6">
                   <label for="status" class="form-label">Status</label>
                   <select  class="form-control" name="status" id="status" value={{row.status}} >
