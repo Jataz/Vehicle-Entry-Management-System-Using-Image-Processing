@@ -95,7 +95,7 @@ def login():
         message = 'Please enter correct username / password!'
     return render_template('login.html', message=message)
     
-@app.route('/dashboard')
+@app.route('/dashboard',methods=['GET', 'POST'])
 def dashboard():
     return render_template("dashboard.html",td=td,tt=tt,tc=tc)
 

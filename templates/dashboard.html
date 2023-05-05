@@ -2,6 +2,25 @@
 
 {% block content %}
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  // make AJAX call to fetch data from server
+  $.ajax({
+    url: '/dashboard',
+    type: 'GET',
+    success: function(data) {
+      // update page with new data
+      $('#vehicle-count').html(data.vehicleCount);
+      $('#access-count').html(data.accessCount);
+      $('#blacklist-count').html(data.blacklistCount);
+    },
+    error: function() {
+      console.log('Error fetching data from server');
+    }
+  });
+});
+</script>
   
         
         <div class="card">
@@ -12,7 +31,7 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>{{td}}</h3>
+                            <h3 id="vehicle-count">{{td}}</h3>
 
                             <p>Vehicles</p>
                         </div>
@@ -27,7 +46,7 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                         <div class="inner">
-                            <h3>{{tt}}</h3>
+                            <h3 id="access-count">{{tt}}</h3>
 
                             <p>Access</p>
                         </div>
@@ -42,7 +61,7 @@
                         <!-- small box -->
                         <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3>{{tc}}</h3>
+                            <h3 id="blacklist-count">{{tc}}</h3>
 
                             <p>Blacklist</p>
                         </div>

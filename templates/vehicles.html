@@ -59,7 +59,7 @@
                             <tr>
                               <th>Owner</th>
                               <th>License Number</th>
-                              <th>Mobile Number</th>
+                              <th>Name</th>
                               <th>Model</th>
                               <th>Category</th>
                               <th>Status</th>
@@ -71,13 +71,13 @@
                               <tr>
                                 <td>{{row.1}}</td>
                                 <td>{{row.9}}</td>
-                                <td>{{row.4}}</td>
+                                <td>{{row.5}}</td>
                                 <td>{{row.6}}</td>
                                 <td>{{row.8}}</td>
                                 <td>{{row.10}}</td>
                                 <td>  
-                                  <a data-toggle="modal" data-target="#update_vehicle{{row.9}}" data-backdrop="static" data-keyboard="true"><span class="btn btn-primary btn-sm">Edit</span></a>
-                                  <a data-toggle="modal" data-target="#viewModal{{row.9}}" data-backdrop="static" data-keyboard="true"><span class="btn btn-secondary btn-sm">View</span></a>    
+                                  <a data-toggle="modal" data-target="#update_vehicle{{row.9}}" data-backdrop="static" data-keyboard="true"><span class="btn btn-danger btn-sm">Edit</span></a>
+                                  <a data-toggle="modal" data-target="#viewModal{{row.9}}" data-backdrop="static" data-keyboard="true"><span class="btn btn-info btn-sm">View</span></a>    
                                   
                               </tr>
                               {% include 'edit_vehicle.html' %}
@@ -96,4 +96,7 @@
     </div>
 
   </section>
+
+
 {% endblock content %}
+

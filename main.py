@@ -7,7 +7,7 @@ import easyocr
 import pytesseract
 from uuid import uuid4 as uuid
 import requests
-from gate import open_and_close_gate
+
 from time import time
 
 def is_plate_valid(plate):
@@ -136,15 +136,32 @@ def draw_box(image, origin, width=50, height=50, color=(0,0,255),thickness=1):
    bottom = (x + width, y + height)
    cv2.rectangle(image, origin, bottom, color, thickness=thickness)
 
-def crop_image(image, box):
-   top, bottom = box
 
-   x_top, y_top = top
-   x_bottom, y_bottom = bottom
 
-   # crop plate
-   plate_img = image[y_top : y_bottom, x_top: x_bottom ]
-   return plate_img
+def crop_image(image, box, angle=0, transform_matrix=None):
+    top, bottom, left, right = box
+
+    x_top, y_top = top
+    x_bottom, y_bottom = bottom
+
+    # crop plate
+    plate_img = image[y_top:y_bottom, x_top:x_bottom]
+
+    if transform_matrix is not None:
+        # apply perspective transform matrix
+        src = np.float32([top, (x_bottom, y_top), bottom, (x_top, y_bottom)])
+        dst = np.float32([(left, top[1]-y_top), (right, top[1]-y_top), (right, bottom[1]-y_top), (left, bottom[1]-y_top)])
+        M = cv2.getPerspectiveTransform(src, dst)
+
+        # apply rotation matrix
+        center = ((left+right)//2, (top+bottom)//2)
+        rotation_matrix = cv2.getRotationMatrix2D(center, angle, 1.0)
+        combined_matrix = np.dot(M, np.vstack([rotation_matrix, [0, 0, 1]]))
+
+        # apply combined transform matrix
+        plate_img = cv2.warpPerspective(plate_img, combined_matrix, (right - left, bottom - top))
+
+    return plate_img
 
 def preprocess_image_demo(i):
    results_dir = f'images/preprocessed/plates_{i}'
@@ -262,7 +279,7 @@ while (True):
             if (plate == last_valid_plate) and (last_valid_plate_time > time() - 20):
                pass
             else:
-               open_and_close_gate()
+        
                last_valid_plate = plate
                last_valid_plate_time = time()
 

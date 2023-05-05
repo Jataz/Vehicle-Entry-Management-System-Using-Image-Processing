@@ -1,0 +1,46 @@
+<div class="modal fade" id="viewModal{{user.0}}">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bgColorWhite">
+          <h4 class="modal-title">Details</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+            <div class="row g-2">
+                <div class="col">
+                    <strong>Name:</strong>
+                    {{user.1}}
+                </div>
+                <div class="col">
+                    <strong>Username:</strong>
+                    {{user.2}}
+                </div>
+            </div>
+            <hr>
+            <div class="row g-2">
+                <div class="col">
+                    <strong>Email:</strong>
+                    {{user.3}} 
+                </div>
+
+                <div class="col">
+                    <strong>Phone Number:</strong>
+                    {{user.4}}
+                </div>
+            </div>
+            <hr>
+       
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>   
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+  

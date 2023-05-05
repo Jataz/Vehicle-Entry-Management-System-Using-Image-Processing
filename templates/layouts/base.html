@@ -81,9 +81,10 @@
 
 <script src="{{ url_for('static', filename='plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
 <script src="{{ url_for('static', filename='plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-
-
+<script src="{{ url_for('static', filename='js/validation.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
  <!-- DataTables scripts -->
+
 
  <script>
   $("#datatable").DataTable({
@@ -97,97 +98,71 @@
     "responsive": true,
   })
  </script>
-
+ 
 <script>
+$(document).ready(function() {
+  // make AJAX call to fetch data from server
+  $.ajax({
+    url: '/dashboard',
+    type: 'GET',
+    success: function(data) {
+      // update page with new data
+      $('#vehicle-count').html(data.vehicleCount);
+      $('#access-count').html(data.accessCount);
+      $('#blacklist-count').html(data.blacklistCount);
+    },
+    error: function() {
+      console.log('Error fetching data from server');
+    }
+  });
+});
+</script>
 
-  function isValidPhoneNumber(phoneNumber) {
-    // Regular expression for phone number validation
-    var regex = /^\d{10}$/;
-    return regex.test(phoneNumber);
-  }
-
-  function isValidEmail(email) {
-    // Regular expression for email validation
-    var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  }
-
+ <SCRipt>
   function validateForm() {
-      // Get input values
-      var owner = document.getElementById('owner').value;
-      var id_number = document.getElementById('id_number').value;
-      var email = document.getElementById('email').value;
-      var phone_number = document.getElementById('phone_number').value;
-      var vehicle_name = document.getElementById('vehicle_name').value;
-      var model = document.getElementById('model').value;
-      var number_plate = document.getElementById('number_plate').value;
-      var role = document.getElementById('role').value;
-      var color = document.getElementById('color').value;
-      var status = document.getElementById('status').value;
-
-      // Perform validation
-      if (owner == ''|| id_number == ''|| vehicle_name== '' || email == '' || phone_number == ''||model=='' || role == ''|| number_plate == '' || color == ''|| status == '') {
-          alert('All fields are required!');
-          return false;
-      }
-
-
-      if (!isValidEmail(email)) {
-        alert('Invalid email format!');
-        return false;
-      }
+    var owner = document.forms["myForm"]["owner"].value;
+    var id_number = document.forms["myForm"]["id_number"].value;
+    var email = document.forms["myForm"]["email"].value;
+    var phone_number = document.forms["myForm"]["phone_number"].value;
+    var vehicle_name = document.forms["myForm"]["vehicle_name"].value;
+    var model = document.forms["myForm"]["model"].value;
+    var number_plate = document.forms["myForm"]["number_plate"].value;
+    var color = document.forms["myForm"]["color"].value;
+    var role = document.forms["myForm"]["role"].value;
+    var status = document.forms["myForm"]["status"].value;
+    console.log(formData.get('owner'));
   
-      if (!isValidPhoneNumber(phone_number)) {
-        alert('Invalid phone number format, Put 10 digits!');
-        return false;
-      }
+    if (owner == "" || id_number == "" || email == "" || phone_number == "" || vehicle_name == "" || model == "" || number_plate == "" || color == "" || role == "" || status == "") {
+      alert("All fields must be filled out");
+      return false;
+    }
+    
+    // validate email format
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert("Invalid email format");
+      return false;
+    }
+    
+    // validate phone number format
+    var phoneRegex = /^\d{10}$/;
+    if (!phoneRegex.test(phone_number)) {
+      alert("Invalid phone number format");
+      return false;
+    }
+    
+    // validate number plate format
+    var numberPlateRegex = /^[A-Z]{3}\d{4}$/;
+    if (!numberPlateRegex.test(number_plate)) {
+      alert("Invalid number plate format");
+      return false;
+    }
   
-      return true;
+    return true;
   }
-</script>
-
-<script>
-
-  function isValidPhoneNumber(phoneNumber) {
-    // Regular expression for phone number validation
-    var regex = /^\d{10}$/;
-    return regex.test(phoneNumber);
-  }
-
-  function isValidEmail(email) {
-    // Regular expression for email validation
-    var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  }
-
-  function validateUser() {
-      // Get input values
-      var name = document.getElementById('name').value;
-      var username = document.getElementById('username').value;
-      var email = document.getElementById('email').value;
-      var phone_number = document.getElementById('phone_number').value;
-      var password = document.getElementById('password').value;
-      var confirm_password = document.getElementById('confirm_password ').value;
-
-      // Perform validation
-      if (name == ''|| username== ''|| email == '' || phone_number == '' || password == ''|| confirm_password  == '') {
-          alert('All fields are required!');
-          return false;
-      }
-
-
-      if (!isValidEmail(email)) {
-        alert('Invalid email format!');
-        return false;
-      }
   
-      if (!isValidPhoneNumber(phone_number)) {
-        alert('Invalid phone number format, Put 10 digits!');
-        return false;
-      }
-  
-      return true;
-  }
-</script>
+ </SCRipt>
+
+
 </body>
 </html>

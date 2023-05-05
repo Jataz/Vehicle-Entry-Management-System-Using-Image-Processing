@@ -8,68 +8,68 @@
         </button>
       </div>
       <div class="modal-body">
-        <form  action="{{ url_for('create_vehicle') }}" method="post" onsubmit="return validateForm()">
+        <form  action="{{ url_for('create_vehicle') }}" method="post" >
 
           <div class="row g-2">
             <div class="mb-3 col-md-6">
                 <label for="owner" class="form-label">Owner</label>
-                <input type="text" class="form-control" placeholder="Owner" name="owner" id="owner"  >
+                <input type="text" class="form-control" placeholder="Owner" name="owner" id="owner"  required >
 
             </div>
             <div class="mb-3 col-md-6">
                 <label for="id_number" class="form-label">National ID</label>
-                <input type="text" class="form-control" placeholder="eg. 06092827h37" name="id_number" id="id_number" >
+                <input type="text" class="form-control" placeholder="eg. 06092827h37" name="id_number" id="id_number" required>
             </div> 
           </div>   
            
           <div class="row g-2">
             <div class="mb-3 col-md-6">
                 <label for="email" class="form-label">Email</label>
-                <input type="text" class="form-control" placeholder="e.g. example@gmail.com" name="email" id="email" >
+                <input type="text" class="form-control" placeholder="e.g. example@gmail.com" name="email" id="email" required >
 
             </div>
             <div class="mb-3 col-md-6">
                 <label for="phone_number" class="form-label">Phone Number</label>
-                <input type="text" class="form-control" placeholder="e.g. 07735072020" name="phone_number"  id="phone_number" >
+                <input type="tel" class="form-control" placeholder="e.g. 0773507202" name="phone_number"  id="phone_number" minlength="9" maxlength="10" required >
             </div> 
           </div>
           
           <div class="row g-2">
             <div class="mb-3 col-md-6">
                 <label for="vehicle_name" class="form-label">Vehicle Name</label>
-                <input type="text" class="form-control" placeholder="Vehicle Name" name="vehicle_name" id="vehicle_name"  >
+                <input type="text" class="form-control" placeholder="Vehicle Name" name="vehicle_name" id="vehicle_name" required>
 
             </div>
             <div class="mb-3 col-md-6">
               <label for="model" class="form-label">Model</label>
-              <input type="text" class="form-control" placeholder="Model" name="model" id="model"  >
+              <input type="text" class="form-control" placeholder="Model" name="model" id="model" required  >
             </div> 
           </div>
           
           <div class="row g-2">
             <div class="mb-3 col-md-6">
                 <label for="number_plate" class="form-label">Number Plate</label>
-                <input type="text" class="form-control" placeholder="e.g. ABC1234" name="number_plate" id="number_plate"  >
+                <input type="text" class="form-control" placeholder="e.g. ABC1234" name="number_plate" id="number_plate" required  >
 
             </div>
             <div class="mb-3 col-md-6">
                 <label for="color" class="form-label">Color</label>
-                <input type="text" class="form-control" placeholder="Color" name="color" id="color">
+                <input type="text" class="form-control" placeholder="Color" name="color" id="color" required>
             </div> 
           </div>    
           <div class="row g-2">
             <div class="mb-3 col-md-6">
                 <label for="role" class="form-label">Category</label>
                 
-                <select  class="form-control" name="role" id="role" >
+                <select  class="form-control" name="role" id="role" required >
                   <option value="">Select Category</option>
                   <option value="student">Student</option>
-                  <option value="admin">Staff</option>
+                  <option value="staff">Staff</option>
                 </select>
             </div>
             <div class="mb-3 col-md-6">
                 <label for="status" class="form-label">Status</label>
-                <select  class="form-control" name="status" id="status" >
+                <select  class="form-control" name="status" id="status" required >
                   <option value="">Select Status</option>
                   <option value="allowed">Allowed</option>
                   <option value="not allowed">Not Allowed</option>
@@ -78,32 +78,10 @@
           </div>      
           
           <div class="modal-footer justify-content-between">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success">Create</button>
           </div>
-        </form>
-
-<!--         <form method="POST" action="/submit" onsubmit="return validateForm()">
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name" ><br>
-  
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" ><br>
-  
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" ><br>
-  
-          <label for="gender">Gender:</label>
-          <select id="role" name="role" >
-              <option value="">Select Gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-          </select><br>
-  
-          <button type="submit">Submit</button>
-      </form> -->
-  
-
+        </form>  
       </div>
     </div>
     <!-- /.modal-content -->
